@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surprise Gift 🎁</title>
+  <style>
+    body {
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg,#0f172a,#1e293b);
+      color: #fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+    .container {
+      text-align:center;
+      padding:20px;
+      background:rgba(255,255,255,0.05);
+      border-radius:16px;
+      width:90%;
+      max-width:420px;
+    }
+    h1 {margin-bottom:10px;}
+    .gift-box {
+      width:140px;
+      height:140px;
+      background:linear-gradient(180deg,#d946ef,#7c3aed);
+      margin:20px auto;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    button {
+      margin-top:12px;
+      padding:12px 20px;
+      border:0;
+      border-radius:10px;
+      font-weight:bold;
+      background:linear-gradient(90deg,#f59e0b,#ef4444);
+      color:#000;
+      cursor:pointer;
+    }
+    .reveal {
+      margin-top:20px;
+      display:none;
+    }
+    .reveal.visible {
+      display:block;
+      animation:pop 0.6s ease forwards;
+    }
+    @keyframes pop {
+      0% {transform:scale(0.6) translateY(40px);opacity:0;}
+      100% {transform:scale(1) translateY(0);opacity:1;}
+    }
+    video {
+      width:100%;
+      max-width:320px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    }
+    .note {
+      margin-top:12px;
+      font-size:13px;
+      opacity:0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Surprise Gift Theme 🎁</h1>
+    <p>Oru cheriya surprise — button press cheyyuka, gift kaanikkum.</p>
+    
+    <div class="gift-box" id="giftBox"></div>
+    
+    <!-- Your video here -->
+    <div class="reveal" id="revealArea">
+      <video id="giftVideo" controls>
+        <source src="middlefinger.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <button id="get-gift">Click to get your gift</button>
+    <div class="note">(Idhu oru joke animation aanu — use it responsibly.)</div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("get-gift");
+    const reveal = document.getElementById("revealArea");
+    const video = document.getElementById("giftVideo");
+    let shown = false;
+
+    btn.addEventListener("click", ()=>{
+      if(shown){
+        reveal.classList.remove("visible");
+        video.pause();
+        video.currentTime = 0;
+        btn.textContent="Click to get your gift";
+        shown=false;
+      } else {
+        reveal.classList.add("visible");
+        video.play();
+        btn.textContent="Hide gift";
+        shown=true;
+      }
+    });
+  </script>
+</body>
+</html>
